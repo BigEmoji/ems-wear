@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Shop | Em's Wear</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- ==============================
+         NAVBAR
+    ============================== -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+                EM'S WEAR
+            </div>
+
+
+            <div class="nav-links">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="shop.html">
+                    Shop
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <button
+                id="menu-toggle"
+                class="menu-toggle">
+                ☰
+            </button>
+
+
+            <div class="nav-actions">
+
+                <button id="theme-toggle">
+                    🌙
+                </button>
+
+                <button id="cart-button">
+
+                    🛒
+
+                    <span id="cart-count">
+                        0
+                    </span>
+
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ==============================
+         SHOP
+    ============================== -->
+
+    <main>
+
+        <section class="featured-products">
+
+            <div class="section-heading">
+
+                <p>
+                    EM'S WEAR COLLECTION
+                </p>
+
+                <h1>
+                    Shop Our Collection
+                </h1>
+
+            </div>
+
+
+            <!-- PRODUCT CONTROLS -->
+
+            <div class="product-controls">
+
+                <input
+                    type="text"
+                    id="search-input"
+                    placeholder="Search products..."
+                >
+
+
+                <select id="category-filter">
+
+                    <option value="all">
+                        All Categories
+                    </option>
+
+                    <option value="Jeans">
+                        Jeans
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- PRODUCTS -->
+
+            <div
+                id="featured-products-container"
+                class="product-grid">
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==============================
+         CART
+    ============================== -->
+
+    <aside
+        id="cart-panel"
+        class="cart-panel">
+
+        <div class="cart-header">
+
+            <h2>
+                Your Cart
+            </h2>
+
+            <button id="close-cart">
+                ✕
+            </button>
+
+        </div>
+
+
+        <div
+            id="cart-items"
+            class="cart-items">
+
+            <p class="empty-cart">
+                Your cart is empty.
+            </p>
+
+        </div>
+
+
+        <div class="cart-footer">
+
+            <div class="cart-total">
+
+                <strong>
+                    Total:
+                </strong>
+
+                <span id="cart-total">
+                    ₦0
+                </span>
+
+            </div>
+
+
+            <button
+                id="checkout-button"
+                class="checkout-button">
+
+                Checkout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ==============================
+         JAVASCRIPT
+    ============================== -->
+
+    <script src="../js/products.js"></script>
+
+    <script src="../js/main.js"></script>
+
+</body>
+
+</html>

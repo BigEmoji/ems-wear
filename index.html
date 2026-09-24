@@ -24,6 +24,14 @@
                 <li><a href="pages/contact.html">Contact</a></li>
             </ul>
 
+
+
+            <button id="menu-toggle" class="menu-toggle">
+                ☰
+            </button>
+
+
+            
             <div class="nav-actions">
                 <button id="theme-toggle" aria-label="Toggle dark mode">
                     🌙
@@ -70,6 +78,28 @@
 
         <!-- Featured Products -->
         <section class="featured-products">
+
+          <div class="product-controls">
+
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search products..."
+            >
+
+            <select id="category-filter">
+
+             <option value="all">
+               All Categories
+             </option>
+
+             <option value="Jeans">
+               Jeans
+             </option>
+
+            </select>
+
+          </div>
 
             <div class="section-heading">
                 <p>OUR COLLECTION</p>
@@ -150,6 +180,36 @@
         </p>
 
     </footer>
+
+    <!-- Shopping Cart -->
+<aside id="cart-panel" class="cart-panel">
+
+    <div class="cart-header">
+        <h2>Your Cart</h2>
+
+        <button id="close-cart" aria-label="Close cart">
+            ✕
+        </button>
+    </div>
+
+    <div id="cart-items" class="cart-items">
+        <p class="empty-cart">Your cart is empty.</p>
+    </div>
+
+    <div class="cart-footer">
+
+        <div class="cart-total">
+            <span>Total:</span>
+            <strong id="cart-total">₦0</strong>
+        </div>
+
+        <button id="checkout-button" class="checkout-button">
+            Checkout
+        </button>
+
+    </div>
+
+</aside>
 
 
     <script src="js/products.js"></script>
