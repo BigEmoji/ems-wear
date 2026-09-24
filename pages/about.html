@@ -7,6 +7,11 @@
 
     <title>About Us | Em's Wear</title>
 
+    <meta
+    name="description"
+    content="Learn more about Em's Wear, our story, values and approach to everyday fashion."
+    >
+
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -40,17 +45,24 @@
 
             </div>
 
-            <button id="menu-toggle" class="menu-toggle">
+            <button
+                id="menu-toggle"
+                class="menu-toggle"
+                aria-label="Open navigation menu"
+            >
                 ☰
             </button>
 
             <div class="nav-actions">
 
-                <button id="theme-toggle">
+                <button id="theme-toggle"
+                    aria-label="Toggle dark mode">
                     🌙
                 </button>
 
-                <button id="cart-button">
+                <button id="cart-button" 
+                 aria-label="Open shopping cart"
+                >
                     🛒
                     <span id="cart-count">0</span>
                 </button>
@@ -244,7 +256,9 @@
                 Your Cart
             </h2>
 
-            <button id="close-cart">
+            <button id="close-cart"
+                 aria-label="Close shopping cart"
+            >
                 ✕
             </button>
 

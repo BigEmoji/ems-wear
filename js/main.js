@@ -93,6 +93,17 @@ function displayProducts(productList = products) {
 
     productContainer.innerHTML = "";
 
+    if (productList.length === 0) {
+    productContainer.innerHTML = `
+        <div class="no-products">
+            <h3>No products found</h3>
+            <p>Try searching for something else.</p>
+        </div>
+    `;
+
+    return;
+}
+
     productList.forEach(function(product) {
 
         const productCard = document.createElement("article");

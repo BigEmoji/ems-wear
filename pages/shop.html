@@ -12,6 +12,11 @@
 
     <title>Shop | Em's Wear</title>
 
+    <meta
+    name="description"
+    content="Shop Em's Wear baggy jeans. Browse our collection, choose your size and place an order."
+    >
+
     <link
         rel="stylesheet"
         href="../css/style.css"
@@ -57,19 +62,26 @@
 
 
             <button
-                id="menu-toggle"
-                class="menu-toggle">
-                ☰
+              id="menu-toggle"
+              class="menu-toggle"
+              aria-label="Open navigation menu"
+            >
+              ☰
             </button>
 
 
             <div class="nav-actions">
 
-                <button id="theme-toggle">
-                    🌙
+                <button
+                   id="theme-toggle"
+                   aria-label="Toggle dark mode"
+                > 
+                   🌙
                 </button>
 
-                <button id="cart-button">
+                <button id="cart-button"
+                     aria-label="Open shopping cart"
+                >
 
                     🛒
 
@@ -159,7 +171,9 @@
                 Your Cart
             </h2>
 
-            <button id="close-cart">
+            <button id="close-cart"
+                aria-label="Close shopping cart"
+            >
                 ✕
             </button>
 
