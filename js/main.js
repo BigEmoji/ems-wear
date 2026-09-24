@@ -182,13 +182,17 @@ function filterProducts() {
     displayProducts(filteredProducts);
 }
 
-searchInput.addEventListener("input", function() {
-    filterProducts();
-});
+if (searchInput) {
+    searchInput.addEventListener("input", function() {
+        filterProducts();
+    });
+}
 
-categoryFilter.addEventListener("change", function() {
-    filterProducts();
-});
+if (categoryFilter) {
+    categoryFilter.addEventListener("change", function() {
+        filterProducts();
+    });
+}
 
 function addToCart(productId, selectedSize) {
 
@@ -237,38 +241,31 @@ function addToCart(productId, selectedSize) {
 
 // displayProducts();
 
-productContainer.addEventListener("click", function(event) {
+if (productContainer) {
 
-    if (event.target.classList.contains("add-to-cart")) {
+    productContainer.addEventListener("click", function(event) {
 
-        const productId = Number(
-            event.target.dataset.id
-        );
+        if (event.target.classList.contains("add-to-cart")) {
 
+            const productId = Number(event.target.dataset.id);
 
-        const sizeSelect = document.querySelector(
-            `.size-select[data-id="${productId}"]`
-        );
+            const sizeSelect = document.querySelector(
+                `.size-select[data-id="${productId}"]`
+            );
 
+            const selectedSize = sizeSelect.value;
 
-        const selectedSize = sizeSelect.value;
+            if (selectedSize === "") {
+                alert("Please select a size.");
+                return;
+            }
 
-
-        if (selectedSize === "") {
-
-            alert("Please select a size.");
-
-            return;
+            addToCart(productId, Number(selectedSize));
         }
 
+    });
 
-        addToCart(
-            productId,
-            Number(selectedSize)
-        );
-    }
-
-});
+}
 
 function updateCart() {
 
@@ -314,27 +311,30 @@ function updateCart() {
 
         <div class="quantity-controls">
 
-            <button
+                <button
                 class="quantity-btn decrease"
-                data-id="${product.id}">
+                data-id="${product.id}"
+                data-size="${product.size}">
                 −
             </button>
 
             <span>${product.quantity}</span>
 
             <button
-                class="quantity-btn increase"
-                data-id="${product.id}">
-                +
+                  class="quantity-btn increase"
+                  data-id="${product.id}"
+                  data-size="${product.size}">
+                  +
             </button>
 
         </div>
 
-        <button
-            class="remove-item"
-            data-id="${product.id}">
-            Remove
-        </button>
+            <button
+               class="remove-item"
+               data-id="${product.id}"
+               data-size="${product.size}">
+               Remove
+           </button>
 
     </div>
 `;
@@ -361,59 +361,48 @@ cartCount.textContent = totalQuantity;
     cartTotal.textContent = `₦${total.toLocaleString()}`;
 }
 
-    cartItemsContainer.addEventListener("click", function(event) {
+cartItemsContainer.addEventListener("click", function(event) {
 
     const productId = Number(event.target.dataset.id);
+    const selectedSize = Number(event.target.dataset.size);
 
     if (event.target.classList.contains("increase")) {
-        changeQuantity(productId, 1);
+        changeQuantity(productId, selectedSize, 1);
     }
 
     if (event.target.classList.contains("decrease")) {
-        changeQuantity(productId, -1);
+        changeQuantity(productId, selectedSize, -1);
     }
 
     if (event.target.classList.contains("remove-item")) {
-        removeFromCart(productId);
+        removeFromCart(productId, selectedSize);
     }
 
 });
 
 
-function changeQuantity(productId, change) {
+function changeQuantity(productId, selectedSize, change) {
 
     const item = cart.find(function(product) {
-
-        return product.id === productId;
-
+        return (
+            product.id === productId &&
+            product.size === selectedSize
+        );
     });
 
-    // If product doesn't exist
-
     if (!item) {
-
         return;
-
     }
-
-    // Change quantity
 
     item.quantity += change;
 
-    // If quantity becomes 0
-
     if (item.quantity <= 0) {
-
-        removeFromCart(productId);
-
+        removeFromCart(productId, selectedSize);
         return;
-
     }
 
-    // updateCart();
     saveCart();
     updateCart();
-
 }
 
 // ==============================
@@ -422,18 +411,17 @@ function changeQuantity(productId, change) {
 
 // ==============================
 
-function removeFromCart(productId) {
+function removeFromCart(productId, selectedSize) {
 
     cart = cart.filter(function(product) {
-
-        return product.id !== productId;
-
+        return !(
+            product.id === productId &&
+            product.size === selectedSize
+        );
     });
 
-        // updateCart();
-        saveCart();
-        updateCart();
-
+    saveCart();
+    updateCart();
 }
 
     function checkout() {
@@ -486,22 +474,72 @@ checkoutButton.addEventListener("click", function() {
 });
 
 
-
-// ==============================
-
-// START WEBSITE
-
-// ==============================
-
 // displayProducts();
-if (window.location.pathname.includes("/pages/")) {
-    displayProducts();
-} else {
-    const featuredProducts = products.filter(function(product) {
-        return product.featured === true;
-    });
+if (productContainer) {
 
-    displayProducts(featuredProducts);
+    if (window.location.pathname.includes("/pages/")) {
+        displayProducts();
+    } else {
+        const featuredProducts = products.filter(function(product) {
+            return product.featured === true;
+        });
+
+        displayProducts(featuredProducts);
+    }
+
 }
+
 updateCart();
 loadTheme();
+
+
+const contactForm = document.getElementById("contact-form");
+
+if (contactForm) {
+
+    contactForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        const nameError = document.getElementById("name-error");
+        const emailError = document.getElementById("email-error");
+        const messageError = document.getElementById("message-error");
+        const formSuccess = document.getElementById("form-success");
+
+        nameError.textContent = "";
+        emailError.textContent = "";
+        messageError.textContent = "";
+        formSuccess.textContent = "";
+
+        let formIsValid = true;
+
+        if (name === "") {
+            nameError.textContent = "Please enter your name.";
+            formIsValid = false;
+        }
+
+        if (email === "") {
+            emailError.textContent = "Please enter your email.";
+            formIsValid = false;
+        }
+
+        if (message === "") {
+            messageError.textContent = "Please enter a message.";
+            formIsValid = false;
+        }
+
+        if (!formIsValid) {
+            return;
+        }
+
+        formSuccess.textContent =
+            "Message received! Thank you for contacting Em's Wear.";
+
+        contactForm.reset();
+    });
+
+}
